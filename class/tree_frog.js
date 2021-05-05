@@ -54,7 +54,7 @@ class TreeFrog extends Animal{
         btn.addEventListener("click", () => {
             var inputCity = document.getElementById("city").value;
             var inputCountry = document.getElementById("country").value;
-            var api = "83c0b441cb2647389ae4c49381dfe123";
+            var api = apiForCoords;
             fetch('https://api.opencagedata.com/geocode/v1/json?q=' + inputCity + ',' + inputCountry + '&key=' + api)
             .then( resp => {
                 if( !resp.ok ){//ine ako 200
@@ -66,7 +66,7 @@ class TreeFrog extends Animal{
             .then(json => {
                 var lat = json.results[0].geometry.lat;
                 var lon = json.results[0].geometry.lng;
-                const apiKey = '23327a396626a08d88a34dfaecf23f09';
+                const apiKey = apiForStats;
                 fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + "&lon=" + lon + "&exclude=hourly,daily,minutely,alerts" + '&appid=' + apiKey + '&units=metric')
                 .then( resp => {
                     if( !resp.ok ){//ine ako 200
@@ -76,10 +76,11 @@ class TreeFrog extends Animal{
                     }
                 })
                 .then(json2 => {
-                    this.weather.innerHTML += "<label> Statistics for: " + inputCity + ", " + inputCountry + "<label>";
-                    this.weather.innerHTML += "<br> Temperature: " + json2.current.temp;
-                    this.weather.innerHTML += "<br> Description: " + json2.current.weather[0].description;
-                    this.weather.innerHTML += "<img src=\"http://openweathermap.org/img/wn/" + json2.current.weather[0].icon + "@2x.png\" width=\"30\" height=\"30\"> <br>";
+                    this.weather.innerHTML += "<p style=\"padding: 1em; display: flex; flex-direction: column; border: solid 4px black; width: 150px;' \"> <label>" + inputCity + ", " + inputCountry + "</label>"
+                     + "<br> <label> Temperature: " + json2.current.temp + "</label>"
+                     + "<br> <label> Description: " + json2.current.weather[0].description + "</label>"
+                     + "<br> <img src=\"http://openweathermap.org/img/wn/" + json2.current.weather[0].icon + "@2x.png\" width=\"50\" height=\"50\"> <br>"
+                     + "</p>";
                 })
                 .catch(error => {
                     console.log(error)
