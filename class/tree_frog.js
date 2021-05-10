@@ -9,7 +9,7 @@ export class TreeFrog extends Animal{
         this.place= document.getElementById("place");
     }
 
-    informaWorld(message){
+    informWorld(message){
         super.informWorld(message);
         if (!this._dead){
             this.news.innerHTML += (' quack');
@@ -79,10 +79,10 @@ export class TreeFrog extends Animal{
                     }
                 })
                 .then(json2 => {
-                    this.weather.innerHTML += "<p style=\"padding: 1em; display: flex; flex-direction: column; border: solid 4px black; width: 150px;' \"> <label>" + inputCity + ", " + inputCountry + "</label>"
-                     + "<br> <label> Temperature: " + json2.current.temp + "</label>"
-                     + "<br> <label> Description: " + json2.current.weather[0].description + "</label>"
-                     + "<br> <img src=\"http://openweathermap.org/img/wn/" + json2.current.weather[0].icon + "@2x.png\" width=\"50\" height=\"50\"> <br>"
+                    this.weather.innerHTML += "<p style=\"padding: 1em; display: flex; flex-direction: column; border: solid 4px black; width: 150px; text-align: center;' \"> <label>" + inputCity + ", " + inputCountry + "</label>"
+                     + "<br> <label>" + Math.round(json2.current.temp) + " °C </label>"
+                     + "<br> <label>" + json2.current.weather[0].description + "</label>"
+                     + "<br> <img src=\"http://openweathermap.org/img/wn/" + json2.current.weather[0].icon + "@2x.png\" width=\"50\" height=\"50\" style=\"width=50%; margin-left: auto; margin-right: auto;\"> <br>"
                      + "</p>";
                 })
                 .catch(error => {
