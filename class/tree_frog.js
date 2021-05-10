@@ -1,4 +1,7 @@
-class TreeFrog extends Animal{
+import { Animal } from './animal.js';
+import { apiForCoords, apiForStats } from './api.js'
+
+export class TreeFrog extends Animal{
     constructor(name, colour, news, gender){
         super(name, colour, news);
         this.gender = gender;

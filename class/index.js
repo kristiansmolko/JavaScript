@@ -1,3 +1,4 @@
+import { TreeFrog } from './tree_frog.js';
 
 // let janko = new Person('karol', 'hurka', new Date('10-05-1999'));
 

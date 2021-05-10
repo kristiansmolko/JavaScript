@@ -1,4 +1,4 @@
-class Animal{
+export class Animal{
     _dead = false;
     constructor(name, colour, news){
         this.name = name;
