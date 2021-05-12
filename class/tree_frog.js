@@ -7,7 +7,15 @@ export class TreeFrog extends Animal{
         this.gender = gender;
         this.weather = this.#createWeatherForecast();
         this.place= document.getElementById("place");
+        chrome.storage.sync.get(['weatherAPIKey'], (uni) => {
+            this.weatherKey = uni.weatherAPIKey;
+        });
+        chrome.storage.sync.get(['geoAPIKey'], (uni) => {
+            this.geoKey = uni.geoAPIKey;
+        })
     }
+
+    
 
     informWorld(message){
         super.informWorld(message);
@@ -57,8 +65,8 @@ export class TreeFrog extends Animal{
         btn.addEventListener("click", () => {
             var inputCity = document.getElementById("city").value;
             var inputCountry = document.getElementById("country").value;
-            var api = apiForCoords;
-            fetch('https://api.opencagedata.com/geocode/v1/json?q=' + inputCity + ',' + inputCountry + '&key=' + api)
+            //var api = apiForCoords;
+            fetch('https://api.opencagedata.com/geocode/v1/json?q=' + inputCity + ',' + inputCountry + '&key=' + this.weatherKey)
             .then( resp => {
                 if( !resp.ok ){//ine ako 200
                     return (resp.statusText + " " + resp.status)
@@ -70,7 +78,7 @@ export class TreeFrog extends Animal{
                 var lat = json.results[0].geometry.lat;
                 var lon = json.results[0].geometry.lng;
                 const apiKey = apiForStats;
-                fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + "&lon=" + lon + "&exclude=hourly,daily,minutely,alerts" + '&appid=' + apiKey + '&units=metric')
+                fetch('https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + "&lon=" + lon + "&exclude=hourly,daily,minutely,alerts" + '&appid=' + this.geoKey + '&units=metric')
                 .then( resp => {
                     if( !resp.ok ){//ine ako 200
                         return (resp.statusText + " " + resp.status)
