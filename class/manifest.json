@@ -1,0 +1,9 @@
+{
+    "name": "Weather Extension",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "background": {
+        "page": "background.html"
+    },
+    "browser_action": {}
+}
