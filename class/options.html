@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Options</title>
+</head>
+<body>
+    <form>
+        <label for="weatherKey">OpenWeather API key</label>
+        <input type="text" id="weatherKey", name="weatherAPIKey"> <br>
+        <label for="geoKey">OpenCage API key</label>
+        <input type="text" id="geoKey", name="geoAPIKey"> <br>
+        <button type="button" id="submit">Save keys</button>
+    </form>
+    
+    <div id="status"></div>
+    <script src="options.js"></script>
+</body>
+</html>
