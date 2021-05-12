@@ -5,5 +5,12 @@
     "background": {
         "page": "background.html"
     },
-    "browser_action": {}
+    "browser_action": {},
+    "options_ui": {
+        "page": "options.html",
+        "chrom_style": true
+    },
+    "permissions": [
+        "storage"
+    ]
 }
